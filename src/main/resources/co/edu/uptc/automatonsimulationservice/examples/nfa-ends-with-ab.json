@@ -1,0 +1,27 @@
+{
+  "automaton" : {
+    "type" : "NFA",
+    "states" : [ "q0", "q1", "q2" ],
+    "alphabet" : [ "a", "b" ],
+    "initialState" : "q0",
+    "acceptingStates" : [ "q2" ],
+    "transitions" : [ {
+      "fromState" : "q0",
+      "symbol" : "a",
+      "toState" : "q0"
+    }, {
+      "fromState" : "q0",
+      "symbol" : "a",
+      "toState" : "q1"
+    }, {
+      "fromState" : "q0",
+      "symbol" : "b",
+      "toState" : "q0"
+    }, {
+      "fromState" : "q1",
+      "symbol" : "b",
+      "toState" : "q2"
+    } ]
+  }
+}
+
