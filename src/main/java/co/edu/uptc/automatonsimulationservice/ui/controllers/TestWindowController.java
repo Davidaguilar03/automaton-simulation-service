@@ -82,19 +82,19 @@ public class TestWindowController {
         }
         refreshSummary();
         renderDiagram();
-        statusLabel.setText("Ready to evaluate strings.");
+        statusLabel.setText("Listo para evaluar cadenas.");
     }
 
     @FXML
     private void onRunBatch() {
         try {
             if (automatonDefinition == null) {
-                throw new IllegalArgumentException("Automaton data is not loaded.");
+                throw new IllegalArgumentException("No hay datos del automata cargados.");
             }
 
             List<String> inputs = parseBatchInputs(batchInputArea.getText());
             if (inputs.isEmpty()) {
-                throw new IllegalArgumentException("At least one input string is required.");
+                throw new IllegalArgumentException("Debes ingresar al menos una cadena.");
             }
 
             List<EvaluationResult> results = evaluationDomainController.evaluateBatch(automatonDefinition, inputs);
@@ -104,7 +104,7 @@ public class TestWindowController {
                 evaluationReportListView.getSelectionModel().select(0);
                 renderTrace(report.getFirst().getResult());
             }
-            statusLabel.setText("Batch evaluation completed.");
+            statusLabel.setText("Evaluacion por lotes completada.");
         } catch (Exception exception) {
             statusLabel.setText(exception.getMessage());
         }
@@ -210,7 +210,7 @@ public class TestWindowController {
             }
         }
         if (inputs.size() > 10) {
-            throw new IllegalArgumentException("You can evaluate up to 10 strings per batch.");
+            throw new IllegalArgumentException("Solo puedes evaluar hasta 10 cadenas por lote.");
         }
         return inputs;
     }
@@ -224,8 +224,8 @@ public class TestWindowController {
             builder.append(step.expression());
         }
         builder.append("\n");
-        builder.append("Final states: ").append(result.getFinalStates()).append("\n");
-        builder.append("Result: ").append(result.isAccepted() ? "ACCEPTED" : "REJECTED");
+        builder.append("Estados finales: ").append(result.getFinalStates()).append("\n");
+        builder.append("Resultado: ").append(result.isAccepted() ? "ACEPTADA" : "RECHAZADA");
         traceArea.setText(builder.toString());
     }
 

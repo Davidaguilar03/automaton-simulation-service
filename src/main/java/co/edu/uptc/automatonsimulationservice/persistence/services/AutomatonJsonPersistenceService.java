@@ -26,10 +26,10 @@ public class AutomatonJsonPersistenceService {
 
     public void save(Path path, AutomatonDefinition definition, Map<String, StatePosition> statePositions) throws IOException {
         if (path == null) {
-            throw new IllegalArgumentException("Target path is required.");
+            throw new IllegalArgumentException("La ruta de destino es obligatoria.");
         }
         if (definition == null) {
-            throw new IllegalArgumentException("Automaton definition is required.");
+            throw new IllegalArgumentException("La definicion del automata es obligatoria.");
         }
         Map<String, StatePosition> safePositions = statePositions == null ? new LinkedHashMap<>() : new LinkedHashMap<>(statePositions);
         AutomatonFile automatonFile = new AutomatonFile(definition, safePositions);
@@ -42,14 +42,14 @@ public class AutomatonJsonPersistenceService {
 
     public AutomatonFile loadFile(Path path) throws IOException {
         if (path == null) {
-            throw new IllegalArgumentException("Source path is required.");
+            throw new IllegalArgumentException("La ruta de origen es obligatoria.");
         }
         if (!Files.exists(path)) {
-            throw new IOException("Source file does not exist: " + path);
+            throw new IOException("El archivo de origen no existe: " + path);
         }
         AutomatonFile automatonFile = objectMapper.readValue(path.toFile(), AutomatonFile.class);
         if (automatonFile == null || automatonFile.getAutomaton() == null) {
-            throw new IOException("Invalid JSON structure. Expected 'automaton' payload.");
+            throw new IOException("Estructura JSON invalida. Se esperaba la propiedad 'automaton'.");
         }
         if (automatonFile.getStatePositions() == null) {
             automatonFile.setStatePositions(new LinkedHashMap<>());

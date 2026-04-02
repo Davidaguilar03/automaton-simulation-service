@@ -18,7 +18,7 @@ public class AutomatonValidationService {
     public ValidationResult validate(AutomatonDefinition definition) {
         List<String> errors = new ArrayList<>();
         if (definition == null) {
-            errors.add("Automaton definition is required.");
+            errors.add("La definicion del automata es obligatoria.");
             return new ValidationResult(false, List.copyOf(errors));
         }
 
@@ -29,38 +29,38 @@ public class AutomatonValidationService {
         List<TransitionRule> transitions = normalizeTransitions(definition.getTransitions());
 
         if (definition.getType() == null) {
-            errors.add("Automaton type is required.");
+            errors.add("El tipo de automata es obligatorio.");
         }
         if (states.isEmpty()) {
-            errors.add("At least one state is required.");
+            errors.add("Se requiere al menos un estado.");
         }
         if (alphabet.isEmpty()) {
-            errors.add("At least one symbol in the alphabet is required.");
+            errors.add("Se requiere al menos un simbolo en el alfabeto.");
         }
         if (initialState == null) {
-            errors.add("Initial state is required.");
+            errors.add("El estado inicial es obligatorio.");
         } else if (!states.contains(initialState)) {
-            errors.add("Initial state must belong to the states set.");
+            errors.add("El estado inicial debe pertenecer al conjunto de estados.");
         }
         if (acceptingStates.isEmpty()) {
-            errors.add("At least one accepting state is required.");
+            errors.add("Se requiere al menos un estado de aceptacion.");
         }
 
         for (String acceptingState : acceptingStates) {
             if (!states.contains(acceptingState)) {
-                errors.add("Accepting state '" + acceptingState + "' does not belong to states.");
+                errors.add("El estado de aceptacion '" + acceptingState + "' no pertenece a los estados.");
             }
         }
 
         for (TransitionRule transition : transitions) {
             if (!states.contains(transition.getFromState())) {
-                errors.add("Transition from-state '" + transition.getFromState() + "' does not belong to states.");
+                errors.add("El estado origen de la transicion '" + transition.getFromState() + "' no pertenece a los estados.");
             }
             if (!states.contains(transition.getToState())) {
-                errors.add("Transition to-state '" + transition.getToState() + "' does not belong to states.");
+                errors.add("El estado destino de la transicion '" + transition.getToState() + "' no pertenece a los estados.");
             }
             if (!alphabet.contains(transition.getSymbol())) {
-                errors.add("Transition symbol '" + transition.getSymbol() + "' does not belong to alphabet.");
+                errors.add("El simbolo de transicion '" + transition.getSymbol() + "' no pertenece al alfabeto.");
             }
         }
 
@@ -84,8 +84,8 @@ public class AutomatonValidationService {
         for (Map.Entry<String, Integer> entry : transitionCountByStateAndSymbol.entrySet()) {
             if (entry.getValue() > 1) {
                 String[] parts = entry.getKey().split("\\|", 2);
-                errors.add("DFA cannot define more than one transition for state '" + parts[0]
-                    + "' and symbol '" + parts[1] + "'.");
+                errors.add("Un DFA no puede definir mas de una transicion para el estado '" + parts[0]
+                    + "' y el simbolo '" + parts[1] + "'.");
             }
         }
 
@@ -93,8 +93,8 @@ public class AutomatonValidationService {
             for (String symbol : alphabet) {
                 String key = state + "|" + symbol;
                 if (!transitionCountByStateAndSymbol.containsKey(key)) {
-                    errors.add("DFA requires exactly one transition for state '" + state
-                        + "' and symbol '" + symbol + "'.");
+                    errors.add("Un DFA requiere exactamente una transicion para el estado '" + state
+                        + "' y el simbolo '" + symbol + "'.");
                 }
             }
         }

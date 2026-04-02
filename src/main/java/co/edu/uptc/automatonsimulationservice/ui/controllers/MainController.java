@@ -135,7 +135,7 @@ public class MainController {
         try {
             ValidationResult result = automatonDomainController.validate(buildDefinitionFromCanvas());
             if (result.valid()) {
-                validationMessageLabel.setText("Automaton definition is valid.");
+                validationMessageLabel.setText("La definicion del automata es valida.");
                 renderAutomatonDiagram();
             } else {
                 validationMessageLabel.setText(String.join("\n", result.errors()));
@@ -149,8 +149,8 @@ public class MainController {
     private void onImportJson() {
         try {
             FileChooser fileChooser = new FileChooser();
-            fileChooser.setTitle("Import Automaton JSON");
-            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JSON files", "*.json"));
+            fileChooser.setTitle("Importar automata JSON");
+            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Archivos JSON", "*.json"));
             File sourceFile = fileChooser.showOpenDialog(resolveStage());
             if (sourceFile == null) {
                 return;
@@ -164,10 +164,10 @@ public class MainController {
             }
 
             loadDefinitionIntoCanvas(definition, automatonFile.getStatePositions());
-            validationMessageLabel.setText("Automaton imported successfully.");
-            dialogService.showInformation("Import completed", "Automaton imported successfully.");
+            validationMessageLabel.setText("Automata importado correctamente.");
+            dialogService.showInformation("Importacion completada", "Automata importado correctamente.");
         } catch (Exception exception) {
-            dialogService.showError("Import failed", exception.getMessage());
+            dialogService.showError("Error de importacion", exception.getMessage());
         }
     }
 
@@ -182,18 +182,18 @@ public class MainController {
             }
 
             FileChooser fileChooser = new FileChooser();
-            fileChooser.setTitle("Export Automaton JSON");
-            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JSON files", "*.json"));
+            fileChooser.setTitle("Exportar automata JSON");
+            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Archivos JSON", "*.json"));
             File destinationFile = fileChooser.showSaveDialog(resolveStage());
             if (destinationFile == null) {
                 return;
             }
 
             persistenceDomainController.save(destinationFile.toPath(), definition, toPersistedPositions());
-            validationMessageLabel.setText("Automaton exported successfully.");
-            dialogService.showInformation("Export completed", "Automaton exported successfully.");
+            validationMessageLabel.setText("Automata exportado correctamente.");
+            dialogService.showInformation("Exportacion completada", "Automata exportado correctamente.");
         } catch (Exception exception) {
-            dialogService.showError("Export failed", exception.getMessage());
+            dialogService.showError("Error de exportacion", exception.getMessage());
         }
     }
 
@@ -215,12 +215,12 @@ public class MainController {
             testWindowController.loadData(copyDefinition(definition), new LinkedHashMap<>(statePositions));
 
             Stage stage = new Stage();
-            stage.setTitle("Automaton Test Bench");
+            stage.setTitle("Panel de Pruebas del Automata");
             stage.setScene(new Scene(root, 1150, 760));
             stage.initOwner(resolveStage());
             stage.show();
         } catch (Exception exception) {
-            dialogService.showError("Unable to open test window", exception.getMessage());
+            dialogService.showError("No se pudo abrir la ventana de pruebas", exception.getMessage());
         }
     }
 
@@ -236,7 +236,7 @@ public class MainController {
         draggedState = null;
         refreshSummary();
         renderAutomatonDiagram();
-        validationMessageLabel.setText("Canvas cleared.");
+        validationMessageLabel.setText("Area de trabajo limpiada.");
     }
 
     private void setupToolButtons() {
@@ -325,13 +325,13 @@ public class MainController {
 
         refreshSummary();
         renderAutomatonDiagram();
-        validationMessageLabel.setText("State created: " + stateName);
+        validationMessageLabel.setText("Estado creado: " + stateName);
     }
 
     private void handleTransitionStateClick(String clickedState) {
         if (transitionSourceState == null) {
             transitionSourceState = clickedState;
-            validationMessageLabel.setText("Transition source selected: " + clickedState + ". Select target state.");
+            validationMessageLabel.setText("Origen seleccionado: " + clickedState + ". Selecciona el estado destino.");
             return;
         }
 
@@ -344,7 +344,7 @@ public class MainController {
 
         String symbol = symbolValue.get();
         if (isDeterministicConflict(sourceState, symbol)) {
-            validationMessageLabel.setText("DFA already contains a transition for " + sourceState + " and symbol " + symbol + ".");
+            validationMessageLabel.setText("El DFA ya contiene una transicion para " + sourceState + " con el simbolo " + symbol + ".");
             return;
         }
 
@@ -352,14 +352,14 @@ public class MainController {
         alphabet.add(symbol);
         refreshSummary();
         renderAutomatonDiagram();
-        validationMessageLabel.setText("Transition created: " + sourceState + " --" + symbol + "--> " + clickedState);
+        validationMessageLabel.setText("Transicion creada: " + sourceState + " --" + symbol + "--> " + clickedState);
     }
 
     private Optional<String> promptTransitionSymbol() {
         TextInputDialog dialog = new TextInputDialog();
-        dialog.setTitle("Create Transition");
-        dialog.setHeaderText("Enter transition symbol");
-        dialog.setContentText("Symbol:");
+        dialog.setTitle("Crear transicion");
+        dialog.setHeaderText("Ingresa el simbolo de la transicion");
+        dialog.setContentText("Simbolo:");
         Optional<String> value = dialog.showAndWait();
         if (value.isEmpty()) {
             return Optional.empty();
@@ -367,7 +367,7 @@ public class MainController {
 
         String symbol = normalizeValue(value.get());
         if (symbol == null || symbol.length() != 1) {
-            validationMessageLabel.setText("Transition symbols must be exactly one character.");
+            validationMessageLabel.setText("Los simbolos de transicion deben tener exactamente un caracter.");
             return Optional.empty();
         }
 
@@ -477,7 +477,7 @@ public class MainController {
     }
 
     private void showStateContextMenu(String state, double screenX, double screenY) {
-        MenuItem toggleInitial = new MenuItem(initialState != null && initialState.equals(state) ? "Unset Initial" : "Set Initial");
+        MenuItem toggleInitial = new MenuItem(initialState != null && initialState.equals(state) ? "Quitar inicial" : "Marcar como inicial");
         toggleInitial.setOnAction(actionEvent -> {
             if (state.equals(initialState)) {
                 initialState = null;
@@ -488,7 +488,7 @@ public class MainController {
             renderAutomatonDiagram();
         });
 
-        MenuItem toggleFinal = new MenuItem(acceptingStates.contains(state) ? "Unset Final" : "Set Final");
+        MenuItem toggleFinal = new MenuItem(acceptingStates.contains(state) ? "Quitar final" : "Marcar como final");
         toggleFinal.setOnAction(actionEvent -> {
             if (acceptingStates.contains(state)) {
                 acceptingStates.remove(state);
@@ -499,10 +499,10 @@ public class MainController {
             renderAutomatonDiagram();
         });
 
-        MenuItem renameStateItem = new MenuItem("Rename");
+        MenuItem renameStateItem = new MenuItem("Renombrar");
         renameStateItem.setOnAction(actionEvent -> renameState(state));
 
-        MenuItem deleteStateItem = new MenuItem("Delete State");
+        MenuItem deleteStateItem = new MenuItem("Eliminar estado");
         deleteStateItem.setOnAction(actionEvent -> deleteState(state));
 
         diagramContextMenu.getItems().setAll(toggleInitial, toggleFinal, renameStateItem, deleteStateItem);
@@ -510,7 +510,7 @@ public class MainController {
     }
 
     private void showTransitionContextMenu(TransitionEdgeView edge, double screenX, double screenY) {
-        MenuItem deleteTransitionItem = new MenuItem("Delete Transition");
+        MenuItem deleteTransitionItem = new MenuItem("Eliminar transicion");
         deleteTransitionItem.setOnAction(actionEvent -> {
             transitions.removeIf(transition ->
                 transition.getFromState().equals(edge.fromState()) && transition.getToState().equals(edge.toState())
@@ -519,7 +519,7 @@ public class MainController {
             transitionSourceState = null;
             refreshSummary();
             renderAutomatonDiagram();
-            validationMessageLabel.setText("Transition removed.");
+            validationMessageLabel.setText("Transicion eliminada.");
         });
 
         diagramContextMenu.getItems().setAll(deleteTransitionItem);
@@ -528,9 +528,9 @@ public class MainController {
 
     private void renameState(String oldName) {
         TextInputDialog dialog = new TextInputDialog(oldName);
-        dialog.setTitle("Rename State");
-        dialog.setHeaderText("Enter new state name");
-        dialog.setContentText("Name:");
+        dialog.setTitle("Renombrar estado");
+        dialog.setHeaderText("Ingresa el nuevo nombre del estado");
+        dialog.setContentText("Nombre:");
         Optional<String> value = dialog.showAndWait();
         if (value.isEmpty()) {
             return;
@@ -538,15 +538,15 @@ public class MainController {
 
         String newName = normalizeValue(value.get());
         if (newName == null) {
-            validationMessageLabel.setText("State name cannot be empty.");
+            validationMessageLabel.setText("El nombre del estado no puede estar vacio.");
             return;
         }
         if (newName.contains(",")) {
-            validationMessageLabel.setText("State name cannot contain commas.");
+            validationMessageLabel.setText("El nombre del estado no puede contener comas.");
             return;
         }
         if (!oldName.equals(newName) && states.contains(newName)) {
-            validationMessageLabel.setText("State name already exists.");
+            validationMessageLabel.setText("El nombre del estado ya existe.");
             return;
         }
 
@@ -584,7 +584,7 @@ public class MainController {
 
         refreshSummary();
         renderAutomatonDiagram();
-        validationMessageLabel.setText("State renamed to " + newName + ".");
+        validationMessageLabel.setText("Estado renombrado a " + newName + ".");
     }
 
     private void deleteState(String state) {
@@ -601,7 +601,7 @@ public class MainController {
         }
         refreshSummary();
         renderAutomatonDiagram();
-        validationMessageLabel.setText("State removed: " + state);
+        validationMessageLabel.setText("Estado eliminado: " + state);
     }
 
     private void recomputeAlphabetFromTransitions() {
