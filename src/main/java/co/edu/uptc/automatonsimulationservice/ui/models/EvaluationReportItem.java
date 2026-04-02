@@ -15,7 +15,7 @@ public class EvaluationReportItem {
 
     @Override
     public String toString() {
-        String status = result.isAccepted() ? "ACCEPTED" : "REJECTED";
+        String status = result.isAccepted() ? "ACEPTADA" : "RECHAZADA";
         return result.getInput() + " -> " + status;
     }
 }

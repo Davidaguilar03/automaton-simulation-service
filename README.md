@@ -1,24 +1,24 @@
-# Universal Finite Automata Simulator and Analyzer
+# Simulador y Analizador Universal de Automatas Finitos
 
-Java 21 desktop application for defining, validating, simulating, and persisting finite automata (DFA and NFA) with JavaFX, FXML, JSON, and Maven.
+Aplicacion de escritorio en Java 21 para definir, validar, simular y persistir automatas finitos (DFA y NFA) usando JavaFX, FXML, JSON y Maven.
 
-## Features
+## Funcionalidades
 
-- Automaton definition using quintuple M = (Q, Sigma, delta, q0, F)
-- DFA and NFA selection
-- Mathematical validation for transitions and DFA determinism/completeness
-- JSON import and export
-- Batch evaluation for up to 10 input strings
-- Step-by-step trace per evaluated string
+- Definicion del automata usando la quintupla M = (Q, Sigma, delta, q0, F)
+- Seleccion de DFA o NFA
+- Validacion matematica de transiciones y de determinismo/completitud en DFA
+- Importacion y exportacion en JSON
+- Evaluacion por lotes de hasta 10 cadenas
+- Trazabilidad paso a paso por cada cadena evaluada
 
-## Input format
+## Formato de entrada
 
-- States: comma-separated values, for example `q0,q1,q2`
-- Alphabet: comma-separated one-character symbols, for example `a,b`
-- Transitions: one transition per line in `from,symbol,to` format
-- Batch evaluation: one string per line, maximum 10 strings
+- Estados: valores separados por coma, por ejemplo `q0,q1,q2`
+- Alfabeto: simbolos de un caracter separados por coma, por ejemplo `a,b`
+- Transiciones: una por linea con formato `from,symbol,to`
+- Evaluacion por lotes: una cadena por linea, maximo 10 cadenas
 
-Example transitions:
+Ejemplo de transiciones:
 
 ```text
 q0,a,q1
@@ -27,11 +27,11 @@ q1,a,q1
 q1,b,q0
 ```
 
-## Architecture
+## Arquitectura
 
-Package-by-feature structure:
+Estructura package-by-feature:
 
-- `automata`
+- `automaton`
   - `models`
   - `services`
   - `controllers`
@@ -49,32 +49,32 @@ Package-by-feature structure:
   - `controllers`
   - `views` (FXML)
 
-Business rules live in domain services and are consumed by controllers.
+Las reglas de negocio viven en servicios de dominio y son consumidas por los controladores.
 
-## Example JSON files
+## Archivos JSON de ejemplo
 
 - `src/main/resources/co/edu/uptc/automatonsimulationservice/examples/dfa-even-a.json`
 - `src/main/resources/co/edu/uptc/automatonsimulationservice/examples/nfa-ends-with-ab.json`
 
-Both files follow the persistence schema with root property `automaton`.
+Ambos archivos siguen el esquema de persistencia con la propiedad raiz `automaton`.
 
-## Run
+## Ejecucion
 
-Verify Java first:
+Verifica Java primero:
 
 ```powershell
 java -version
 echo $env:JAVA_HOME
 ```
 
-If `JAVA_HOME` is empty, set it in the current shell:
+Si `JAVA_HOME` esta vacio, configuralo en la sesion actual:
 
 ```powershell
 $env:JAVA_HOME="C:\Program Files\Java\jdk-21"
 $env:Path="$env:JAVA_HOME\bin;$env:Path"
 ```
 
-Then run tests and start the application:
+Luego ejecuta pruebas e inicia la aplicacion:
 
 ```powershell
 ./mvnw.cmd clean test

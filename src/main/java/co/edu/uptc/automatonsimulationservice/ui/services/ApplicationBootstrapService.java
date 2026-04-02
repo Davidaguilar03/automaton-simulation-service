@@ -12,11 +12,11 @@ public class ApplicationBootstrapService {
                 ApplicationBootstrapService.class.getResource("/co/edu/uptc/automatonsimulationservice/ui/views/main-view.fxml")
             );
             Scene scene = new Scene(loader.load(), 1200, 780);
-            stage.setTitle("Universal Finite Automata Simulator and Analyzer");
+            stage.setTitle("Simulador y Analizador Universal de Automatas Finitos");
             stage.setScene(scene);
             stage.show();
         } catch (Exception exception) {
-            throw new RuntimeException("Unable to initialize application", exception);
+            throw new RuntimeException("No se pudo inicializar la aplicacion", exception);
         }
     }
 }

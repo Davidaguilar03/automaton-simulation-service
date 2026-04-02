@@ -18,7 +18,7 @@ public class AutomatonEvaluationService {
             return List.of();
         }
         if (inputs.size() > 10) {
-            throw new IllegalArgumentException("Batch evaluation allows up to 10 strings.");
+            throw new IllegalArgumentException("La evaluacion por lotes permite hasta 10 cadenas.");
         }
         List<EvaluationResult> results = new ArrayList<>();
         for (String input : inputs) {
