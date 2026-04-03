@@ -81,3 +81,50 @@ Luego ejecuta pruebas e inicia la aplicacion:
 ./mvnw.cmd javafx:run
 ```
 
+# Manual de Usuario
+
+## Carga de archivos
+
+Una vez iniciada la aplicación, se podrá seleccionar la opción `Importar JSON` la cual permitirá cargar desde los archivos locales del sistema un autómata en dicho formato.
+
+Es necesario realizar dos observaciones importantes previas:
+
+```text
+1. El archivo JSON contiene la información completa del autómata
+```
+
+Dicho archivo almacena la siguiente información:
+
+- `Tipo de autómata`
+- `Conjunto de estados`
+- `Alfabeto`
+- `Estado inicial`
+- `Estados de aceptación`
+- `Conjunto de transiciones`
+  - `Estado del que parte la transición`
+  - `Símbolo de la transición`
+  - `Estado al que llega la transición`
+
+Pero además de ello, cuenta con la información de las coordenadas exactas en las cuales se encuentra cada estado dentro del área de dibujo, lo cual permite que el autómata se dibuje exactamente igual a como se encontraba al momento de ser exportado.
+
+- `Posiciones de estados`
+  - `Estado`
+    - `Coordenada X`
+    - `Coordenada Y`
+
+En caso tal de que la información de las coordenadas no se encuentre presente, el autómata se dibujará con una distribución circular automática de los estados dentro del área de dibujo, lo cual puede resultar en una disposición diferente a la que se tenía al momento de diseñar el autómata previamente.
+
+```text
+2. El sistema valida que la información del archivo JSON sea congruente
+```
+Al momento de cargar un archivo JSON, el sistema realiza una validación de la información contenida en el mismo para asegurar que sea congruente y pueda ser procesada correctamente. Esta validación incluye:
+- Que el tipo de autómata sea válido (DFA o NFA)
+- Que todos los elementos de la quíntupla se encuentren presentes
+- Que los datos de la quíntupla sean consistentes con respecto al resto de elementos
+
+Es decir, si se importa un archivo JSON que contenga un autómata con información inconsistente o incompleta, el sistema mostrará un mensaje de error.
+
+Y si, se importa un archivo JSON que no tenga nada que ver con la estructura definida del autómata, el sistema lo rechazará y alertará de igual forma errores en la carga del archivo.
+
+## Descarga de archivos
+
