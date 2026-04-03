@@ -11,7 +11,7 @@ public class ApplicationBootstrapService {
             FXMLLoader loader = new FXMLLoader(
                 ApplicationBootstrapService.class.getResource("/co/edu/uptc/automatonsimulationservice/ui/views/main-view.fxml")
             );
-            Scene scene = new Scene(loader.load(), 1200, 780);
+            Scene scene = new Scene(loader.load(), 1450, 780);
             stage.setTitle("Simulador y Analizador Universal de Automatas Finitos");
             stage.setScene(scene);
             stage.show();

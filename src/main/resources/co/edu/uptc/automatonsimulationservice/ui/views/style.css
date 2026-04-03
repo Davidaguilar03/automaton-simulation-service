@@ -1,0 +1,50 @@
+.root {
+    -fx-font-size: 16px;
+    -fx-background-color: #E4E4E4;
+}
+
+.top-panel {
+    -fx-background-color: #C4C7CE;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 4);
+}
+
+.tool-bar {
+    -fx-background-color: transparent;
+}
+
+.button, .toggle-button {
+    -fx-background-color: #607d8b;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-padding: 8px 16px;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 5, 0, 0, 2);
+}
+
+.button:hover, .toggle-button:hover {
+    -fx-background-color: #78909c;
+}
+
+.button:pressed, .toggle-button:selected {
+    -fx-background-color: #455a64;
+}
+
+.combo-box {
+    -fx-font-size: 16px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 5, 0, 0, 2);
+}
+
+#automatonDiagramPane {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #d1d5db;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 15, 0, 0, 5);
+}
+
+.list-view, .text-area {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.15), 5, 0, 0, 2);
+    -fx-background-radius: 4;
+    -fx-border-radius: 4;
+}
