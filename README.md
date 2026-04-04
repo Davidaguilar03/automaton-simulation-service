@@ -130,4 +130,4 @@ Y por otra parte, si se importa un archivo JSON que no tenga nada que ver con la
 
 Una vez iniciada la aplicación, se podrá seleccionar la opción `Exportar JSON` la cual permitirá descargar hacia los archivos locales del sistema un autómata previamente diseñado.
 
-Dicho autómata almacenará toda la información mencionada en el punto de `Importar JSON`, incluyendo las coordenadas de los estados para así poder importarlos nuevamente conservando todos sus detalles y características fijas.
+Dicho autómata almacenará toda la información mencionada en el punto de `Importar JSON`, incluyendo las coordenadas de los estados para así poder importarlos nuevamente conservando todos sus detalles y características específicas.
