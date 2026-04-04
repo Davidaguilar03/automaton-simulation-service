@@ -16,7 +16,7 @@
     -fx-background-color: #607d8b;
     -fx-text-fill: white;
     -fx-font-size: 16px;
-    -fx-padding: 8px 16px;
+    -fx-padding: 8px 10px;
     -fx-background-radius: 4px;
     -fx-cursor: hand;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 5, 0, 0, 2);
