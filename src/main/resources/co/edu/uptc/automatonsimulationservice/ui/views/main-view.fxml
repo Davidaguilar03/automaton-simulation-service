@@ -19,18 +19,18 @@
             <padding>
                 <Insets top="10.0" right="10.0" bottom="6.0" left="10.0"/>
             </padding>
-            <Label text="Simulador y Analizador Universal de Automatas Finitos" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+            <Label text="SIMULADOR DE AUTÓMATAS FINITOS" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
             <ToolBar>
-                <ToggleButton fx:id="selectToolButton" text="Seleccionar"/>
-                <ToggleButton fx:id="addStateToolButton" text="Estado"/>
-                <ToggleButton fx:id="addTransitionToolButton" text="Transicion"/>
+                <ToggleButton fx:id="selectToolButton" text="👆 Seleccionar"/>
+                <ToggleButton fx:id="addStateToolButton" text="⭕ Estado"/>
+                <ToggleButton fx:id="addTransitionToolButton" text="➡ Transicion"/>
                 <Label text="Tipo"/>
                 <ComboBox fx:id="automatonTypeComboBox" prefWidth="110.0"/>
-                <Button text="Validar" onAction="#onValidateAutomaton"/>
-                <Button text="Importar JSON" onAction="#onImportJson"/>
-                <Button text="Exportar JSON" onAction="#onExportJson"/>
-                <Button text="Limpiar" onAction="#onClearAutomaton"/>
-                <Button text="Probar" onAction="#onOpenTestWindow"/>
+                <Button text="✓ Validar" onAction="#onValidateAutomaton"/>
+                <Button text="📥 Importar JSON" onAction="#onImportJson"/>
+                <Button text="📤 Exportar JSON" onAction="#onExportJson"/>
+                <Button text="⌫ Limpiar" onAction="#onClearAutomaton"/>
+                <Button text="🔬 Probar" onAction="#onOpenTestWindow"/>
                 <Label fx:id="validationMessageLabel"/>
             </ToolBar>
         </VBox>

@@ -23,8 +23,8 @@
             </padding>
             <Label text="Panel de Pruebas del Automata" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
             <ToolBar>
-                <Button text="Ejecutar prueba" onAction="#onRunBatch"/>
-                <Button text="Cerrar" onAction="#onCloseWindow"/>
+                <Button text="▶ Ejecutar prueba" onAction="#onRunBatch"/>
+                <Button text="✖ Cerrar" onAction="#onCloseWindow"/>
                 <Label fx:id="statusLabel" text="Listo"/>
             </ToolBar>
         </VBox>
