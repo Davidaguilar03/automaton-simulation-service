@@ -124,7 +124,10 @@ Al momento de cargar un archivo JSON, el sistema realiza una validación de la i
 
 Es decir, si se importa un archivo JSON que contenga un autómata con información inconsistente o incompleta, el sistema mostrará un mensaje de error.
 
-Y si, se importa un archivo JSON que no tenga nada que ver con la estructura definida del autómata, el sistema lo rechazará y alertará de igual forma errores en la carga del archivo.
+Y por otra parte, si se importa un archivo JSON que no tenga nada que ver con la estructura definida del autómata, el sistema lo rechazará y alertará de igual forma errores en la carga del archivo.
 
 ## Descarga de archivos
 
+Una vez iniciada la aplicación, se podrá seleccionar la opción `Exportar JSON` la cual permitirá descargar hacia los archivos locales del sistema un autómata previamente diseñado.
+
+Dicho autómata almacenará toda la información mencionada en el punto de `Importar JSON`, incluyendo las coordenadas de los estados para así poder importarlos nuevamente conservando todos sus detalles y características específicas.
