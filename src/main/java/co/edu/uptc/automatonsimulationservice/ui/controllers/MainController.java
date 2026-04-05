@@ -34,6 +34,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.scene.image.Image;
 
 import java.io.File;
 import java.nio.file.Path;
@@ -216,11 +217,12 @@ public class MainController {
 
             Stage stage = new Stage();
             stage.setTitle("Panel de Pruebas del Automata");
+            stage.getIcons().add(new Image(MainController.class.getResourceAsStream("/co/edu/uptc/automatonsimulationservice/logo.png")));
             stage.setScene(new Scene(root, 1150, 760));
             stage.initOwner(resolveStage());
             stage.show();
-        } catch (Exception exception) {
-            dialogService.showError("No se pudo abrir la ventana de pruebas", exception.getMessage());
+        } catch (Exception ex) {
+            dialogService.showError("No se pudo abrir la ventana de pruebas", ex.getMessage());
         }
     }
 
