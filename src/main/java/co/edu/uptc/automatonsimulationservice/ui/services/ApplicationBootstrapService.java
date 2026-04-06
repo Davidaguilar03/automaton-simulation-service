@@ -13,7 +13,7 @@ public class ApplicationBootstrapService {
                 ApplicationBootstrapService.class.getResource("/co/edu/uptc/automatonsimulationservice/ui/views/main-view.fxml")
             );
             Scene scene = new Scene(loader.load(), 1450, 780);
-            stage.setTitle("SIMULADOR DE AUTÓMATAS FINITOS");
+            stage.setTitle("AUTOMATEO: SIMULADOR DE AUTÓMATAS FINITOS");
             stage.getIcons().add(new Image(ApplicationBootstrapService.class.getResourceAsStream("/co/edu/uptc/automatonsimulationservice/logo.png")));
             stage.setScene(scene);
             stage.show();
