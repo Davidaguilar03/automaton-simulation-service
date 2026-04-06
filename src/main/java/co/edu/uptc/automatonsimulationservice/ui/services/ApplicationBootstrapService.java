@@ -7,6 +7,9 @@ import javafx.stage.Stage;
 
 public class ApplicationBootstrapService {
 
+    /**
+     * Construye y carga los archivos FXML y de imagen al comienzo del ciclo de vida.
+     */
     public void start(Stage stage) {
         try {
             FXMLLoader loader = new FXMLLoader(

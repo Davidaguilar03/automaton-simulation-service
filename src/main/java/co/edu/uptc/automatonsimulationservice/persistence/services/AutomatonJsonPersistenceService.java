@@ -15,15 +15,24 @@ import java.util.Map;
 public class AutomatonJsonPersistenceService {
     private final ObjectMapper objectMapper;
 
+    /**
+     * Construye un mapeador para serializar con un formato legible (identado).
+     */
     public AutomatonJsonPersistenceService() {
         this.objectMapper = new ObjectMapper();
         this.objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
     }
 
+    /**
+     * Guarda la definición ignorando la existencia de coordenadas visuales.
+     */
     public void save(Path path, AutomatonDefinition definition) throws IOException {
         save(path, definition, Map.of());
     }
 
+    /**
+     * Guarda la definición y un esquema de coordenadas del canvas en un archivo JSON.
+     */
     public void save(Path path, AutomatonDefinition definition, Map<String, StatePosition> statePositions) throws IOException {
         if (path == null) {
             throw new IllegalArgumentException("La ruta de destino es obligatoria.");
@@ -36,10 +45,16 @@ public class AutomatonJsonPersistenceService {
         objectMapper.writeValue(path.toFile(), automatonFile);
     }
 
+    /**
+     * Carga exclusivamente la definición matemática de un autómata parseado.
+     */
     public AutomatonDefinition load(Path path) throws IOException {
         return loadFile(path).getAutomaton();
     }
 
+    /**
+     * Descarga y valida un archivo JSON construyendo los datos en memoria.
+     */
     public AutomatonFile loadFile(Path path) throws IOException {
         if (path == null) {
             throw new IllegalArgumentException("La ruta de origen es obligatoria.");
@@ -57,4 +72,3 @@ public class AutomatonJsonPersistenceService {
         return automatonFile;
     }
 }
-

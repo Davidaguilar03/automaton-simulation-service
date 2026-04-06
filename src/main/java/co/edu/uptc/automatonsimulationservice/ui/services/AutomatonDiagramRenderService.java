@@ -29,6 +29,9 @@ public class AutomatonDiagramRenderService {
         BOTTOM
     }
 
+    /**
+     * Dibuja los gráficos (círculos y flechas) en la ventana.
+     */
     public void render(Pane pane, List<StateNodeView> states, List<TransitionEdgeView> edges) {
         pane.getChildren().clear();
         if (states.isEmpty()) {
@@ -63,6 +66,9 @@ public class AutomatonDiagramRenderService {
         }
     }
 
+    /**
+     * Pinta una trayectoria lineal entre dos diferentes estados.
+     */
     private void drawStraightEdge(Pane pane, StateNodeView from, StateNodeView to, String label) {
         double dx = to.x() - from.x();
         double dy = to.y() - from.y();
@@ -91,6 +97,9 @@ public class AutomatonDiagramRenderService {
         drawLabel(pane, label, labelX, labelY - 8);
     }
 
+    /**
+     * Pinta una trayectoria curva para evitar el cruce de transiciones bidireccionales.
+     */
     private void drawCurvedEdge(Pane pane, StateNodeView from, StateNodeView to, String label, int direction) {
         double dx = to.x() - from.x();
         double dy = to.y() - from.y();
@@ -132,6 +141,9 @@ public class AutomatonDiagramRenderService {
         drawLabel(pane, label, labelX + px * 8 * direction, labelY + ux * 8 * direction);
     }
 
+    /**
+     * Dibuja un lazo que sale y llega al mismo estado.
+     */
     private void drawSelfLoop(Pane pane, StateNodeView state, String label) {
         LoopSide side = resolveLoopSide(pane, state);
         double endpointRadius = NODE_RADIUS + 2;
@@ -189,6 +201,9 @@ public class AutomatonDiagramRenderService {
         drawLabel(pane, label, labelX, labelY);
     }
 
+    /**
+     * Evalúa qué lado del estado es óptimo para dibujar un lazo sin salirse.
+     */
     private LoopSide resolveLoopSide(Pane pane, StateNodeView state) {
         double availableRight = pane.getWidth() - state.x() - NODE_RADIUS;
         double availableLeft = state.x() - NODE_RADIUS;
@@ -212,6 +227,9 @@ public class AutomatonDiagramRenderService {
         return side;
     }
 
+    /**
+     * Crea gráficamente la burbuja circular que identifica al estado matemático con su etiqueta.
+     */
     private void drawState(Pane pane, StateNodeView state) {
         Circle outer = new Circle(state.x(), state.y(), NODE_RADIUS);
         outer.setFill(Color.WHITE);
@@ -235,6 +253,9 @@ public class AutomatonDiagramRenderService {
         pane.getChildren().add(text);
     }
 
+    /**
+     * Inserta la flecha externa inicial que apunta al estado de arranque (q0).
+     */
     private void drawInitialMarker(Pane pane, StateNodeView state) {
         double startX = state.x() - NODE_RADIUS - 24;
         double startY = state.y();
@@ -249,6 +270,9 @@ public class AutomatonDiagramRenderService {
         drawArrowHead(pane, endX, endY, 1, 0);
     }
 
+    /**
+     * Crea los punteros cónicos (triángulos) de las flechas.
+     */
     private void drawArrowHead(Pane pane, double tipX, double tipY, double ux, double uy) {
         double leftX = tipX - (ux * ARROW_SIZE) + (uy * ARROW_SIZE * 0.6);
         double leftY = tipY - (uy * ARROW_SIZE) - (ux * ARROW_SIZE * 0.6);
@@ -265,6 +289,9 @@ public class AutomatonDiagramRenderService {
         pane.getChildren().add(right);
     }
 
+    /**
+     * Formatea y ubica el texto flotante de los símbolos de las transiciones.
+     */
     private void drawLabel(Pane pane, String label, double x, double y) {
         Text text = new Text(label);
         text.setFont(Font.font(12));
@@ -290,4 +317,3 @@ public class AutomatonDiagramRenderService {
         pane.getChildren().add(text);
     }
 }
-

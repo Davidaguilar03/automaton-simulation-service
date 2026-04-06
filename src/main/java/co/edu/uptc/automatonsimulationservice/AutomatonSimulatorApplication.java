@@ -7,6 +7,9 @@ import javafx.stage.Stage;
 public class AutomatonSimulatorApplication extends Application {
     private final ApplicationBootstrapService applicationBootstrapService = new ApplicationBootstrapService();
 
+    /**
+     * Inicia la aplicación cargando la configuración base.
+     */
     @Override
     public void start(Stage stage) {
         applicationBootstrapService.start(stage);

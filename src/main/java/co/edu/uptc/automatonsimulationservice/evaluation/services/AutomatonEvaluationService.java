@@ -13,6 +13,9 @@ import java.util.Set;
 
 public class AutomatonEvaluationService {
 
+    /**
+     * Evalúa una lista de palabras con un máximo de diez a la vez.
+     */
     public List<EvaluationResult> evaluateBatch(AutomatonDefinition definition, List<String> inputs) {
         if (inputs == null) {
             return List.of();
@@ -27,6 +30,9 @@ public class AutomatonEvaluationService {
         return results;
     }
 
+    /**
+     * Define dinámicamente si evaluar la palabra bajo un enfoque Determinista (DFA) o No determinista (NFA).
+     */
     public EvaluationResult evaluate(AutomatonDefinition definition, String input) {
         if (definition.getType() == AutomatonType.NFA) {
             return evaluateNfa(definition, input);
@@ -34,6 +40,9 @@ public class AutomatonEvaluationService {
         return evaluateDfa(definition, input);
     }
 
+    /**
+     * Procesa letras mediante estados simples y únicos registrando errores en caso de bloqueo.
+     */
     private EvaluationResult evaluateDfa(AutomatonDefinition definition, String input) {
         String currentState = definition.getInitialState();
         List<TraceStep> trace = new ArrayList<>();
@@ -51,6 +60,9 @@ public class AutomatonEvaluationService {
         return new EvaluationResult(input, accepted, Set.of(currentState), List.copyOf(trace));
     }
 
+    /**
+     * Procesa el autómata permitiendo exploración paralela sobre múltiples estados al mismo tiempo.
+     */
     private EvaluationResult evaluateNfa(AutomatonDefinition definition, String input) {
         Set<String> currentStates = new LinkedHashSet<>();
         currentStates.add(definition.getInitialState());
@@ -77,6 +89,9 @@ public class AutomatonEvaluationService {
         return new EvaluationResult(input, accepted, Set.copyOf(currentStates), List.copyOf(trace));
     }
 
+    /**
+     * Busca qué estado es el siguiente en una lista basándose en el origen y un símbolo dado.
+     */
     private String findSingleTransition(List<TransitionRule> transitions, String fromState, String symbol) {
         for (TransitionRule transition : transitions) {
             if (transition.getFromState().equals(fromState) && transition.getSymbol().equals(symbol)) {
@@ -86,4 +101,3 @@ public class AutomatonEvaluationService {
         return null;
     }
 }
-
