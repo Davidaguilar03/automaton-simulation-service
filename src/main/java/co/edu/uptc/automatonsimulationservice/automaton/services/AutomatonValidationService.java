@@ -15,6 +15,9 @@ import java.util.Set;
 
 public class AutomatonValidationService {
 
+    /**
+     * Valida la definición del autómata, sus estados, su alfabeto y transiciones completas.
+     */
     public ValidationResult validate(AutomatonDefinition definition) {
         List<String> errors = new ArrayList<>();
         if (definition == null) {
@@ -71,6 +74,9 @@ public class AutomatonValidationService {
         return new ValidationResult(errors.isEmpty(), List.copyOf(errors));
     }
 
+    /**
+     * Comprueba restricciones suplementarias para los Autómatas Deterministas (DFA).
+     */
     private void validateDfaConstraints(Set<String> states,
                                         Set<String> alphabet,
                                         List<TransitionRule> transitions,
@@ -100,6 +106,9 @@ public class AutomatonValidationService {
         }
     }
 
+    /**
+     * Limpia los valores en blanco dentro de un conjunto y lo retorna nuevo.
+     */
     private Set<String> normalizeSet(Set<String> source) {
         Set<String> normalized = new LinkedHashSet<>();
         if (source == null) {
@@ -114,6 +123,9 @@ public class AutomatonValidationService {
         return normalized;
     }
 
+    /**
+     * Revisa y limpia las transiciones defectuosas antes de insertarlas al resultado final.
+     */
     private List<TransitionRule> normalizeTransitions(List<TransitionRule> source) {
         List<TransitionRule> normalized = new ArrayList<>();
         if (source == null) {
@@ -133,6 +145,9 @@ public class AutomatonValidationService {
         return normalized;
     }
 
+    /**
+     * Toma una cadena simple y la reduce, devolviendo null si está vacía.
+     */
     private String normalizeValue(String value) {
         if (value == null) {
             return null;
@@ -144,4 +159,3 @@ public class AutomatonValidationService {
         return normalized;
     }
 }
-

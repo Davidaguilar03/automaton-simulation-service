@@ -10,26 +10,27 @@ import java.nio.file.Path;
 import java.util.Map;
 
 public class PersistenceDomainController {
+
     private final AutomatonJsonPersistenceService automatonJsonPersistenceService;
 
+    /**
+     * Constructor del controlador de dominio encargado de leer y guardar datos en archivos.
+     */
     public PersistenceDomainController(AutomatonJsonPersistenceService automatonJsonPersistenceService) {
         this.automatonJsonPersistenceService = automatonJsonPersistenceService;
     }
 
-    public void save(Path path, AutomatonDefinition definition) throws IOException {
-        automatonJsonPersistenceService.save(path, definition);
-    }
-
-    public void save(Path path, AutomatonDefinition definition, Map<String, StatePosition> statePositions) throws IOException {
+    /**
+     * Guarda el autómata con todas sus posiciones directamente a disco.
+     */
+    public void save(Path path, AutomatonDefinition definition, Map<String, StatePosition> statePositions) throws Exception {
         automatonJsonPersistenceService.save(path, definition, statePositions);
     }
 
-    public AutomatonDefinition load(Path path) throws IOException {
-        return automatonJsonPersistenceService.load(path);
-    }
-
-    public AutomatonFile loadFile(Path path) throws IOException {
+    /**
+     * Carga el archivo completo de un autómata parseándolo a objetos del programa.
+     */
+    public AutomatonFile loadFile(Path path) throws Exception {
         return automatonJsonPersistenceService.loadFile(path);
     }
 }
-
