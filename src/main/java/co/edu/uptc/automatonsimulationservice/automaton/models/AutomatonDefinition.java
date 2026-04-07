@@ -4,7 +4,18 @@ import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+/**
+ * Representa la definicion matemática de un autómata finito.
+ *
+ * <p>La entidad agrupa los cinco componentes de la quíntupla (Q, Sigma, q0, F, delta)
+ * y conserva orden de inserción en colecciones para mantener consistencia visual y de
+ * serialización en la interfaz y los archivos JSON.</p>
+ */
+@Data
+@NoArgsConstructor
 public class AutomatonDefinition {
     private AutomatonType type = AutomatonType.DFA;
     private Set<String> states = new LinkedHashSet<>();
@@ -12,56 +23,5 @@ public class AutomatonDefinition {
     private String initialState;
     private Set<String> acceptingStates = new LinkedHashSet<>();
     private List<TransitionRule> transitions = new ArrayList<>();
-
-    public AutomatonDefinition() {
-    }
-
-    public AutomatonType getType() {
-        return type;
-    }
-
-    public void setType(AutomatonType type) {
-        this.type = type;
-    }
-
-    public Set<String> getStates() {
-        return states;
-    }
-
-    public void setStates(Set<String> states) {
-        this.states = states;
-    }
-
-    public Set<String> getAlphabet() {
-        return alphabet;
-    }
-
-    public void setAlphabet(Set<String> alphabet) {
-        this.alphabet = alphabet;
-    }
-
-    public String getInitialState() {
-        return initialState;
-    }
-
-    public void setInitialState(String initialState) {
-        this.initialState = initialState;
-    }
-
-    public Set<String> getAcceptingStates() {
-        return acceptingStates;
-    }
-
-    public void setAcceptingStates(Set<String> acceptingStates) {
-        this.acceptingStates = acceptingStates;
-    }
-
-    public List<TransitionRule> getTransitions() {
-        return transitions;
-    }
-
-    public void setTransitions(List<TransitionRule> transitions) {
-        this.transitions = transitions;
-    }
 }
 

@@ -2,6 +2,7 @@ module co.edu.uptc.automatonsimulationservice {
     requires javafx.controls;
     requires javafx.fxml;
     requires com.fasterxml.jackson.databind;
+    requires static lombok;
 
     opens co.edu.uptc.automatonsimulationservice.ui.controllers to javafx.fxml;
     opens co.edu.uptc.automatonsimulationservice.automaton.models to com.fasterxml.jackson.databind;

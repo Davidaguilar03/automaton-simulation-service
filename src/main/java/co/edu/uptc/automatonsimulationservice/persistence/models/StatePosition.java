@@ -1,31 +1,17 @@
 package co.edu.uptc.automatonsimulationservice.persistence.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+/**
+ * Representa la posicion cartesiana de un estado en el lienzo de la interfaz.
+ */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class StatePosition {
     private double x;
     private double y;
-
-    public StatePosition() {
-    }
-
-    public StatePosition(double x, double y) {
-        this.x = x;
-        this.y = y;
-    }
-
-    public double getX() {
-        return x;
-    }
-
-    public void setX(double x) {
-        this.x = x;
-    }
-
-    public double getY() {
-        return y;
-    }
-
-    public void setY(double y) {
-        this.y = y;
-    }
 }
 

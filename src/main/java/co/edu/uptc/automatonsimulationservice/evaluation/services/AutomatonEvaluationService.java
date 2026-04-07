@@ -11,6 +11,9 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Implementa la simulación de ejecución de cadenas sobre autómatas DFA y NFA.
+ */
 public class AutomatonEvaluationService {
 
     /**

@@ -29,56 +29,49 @@ q1,b,q0
 
 ## Arquitectura
 
-Estructura package-by-feature:
+El proyecto sigue un enfoque **package-by-feature** con separación por responsabilidad:
 
-- `automaton`
-  - `models`
-  - `services`
-  - `controllers`
-- `evaluation`
-  - `models`
-  - `services`
-  - `controllers`
-- `persistence`
-  - `models`
-  - `services`
-  - `controllers`
-- `ui`
-  - `models`
-  - `services`
-  - `controllers`
-  - `views` (FXML)
+- `co.edu.uptc.automatonsimulationservice.automaton`
+  - `models`: entidades del dominio formal (`AutomatonDefinition`, `TransitionRule`, `AutomatonType`).
+  - `services`: validación estructural y semántica de DFA/NFA (`AutomatonValidationService`).
+  - `controllers`: fachada de dominio para consumo desde la capa UI.
+- `co.edu.uptc.automatonsimulationservice.evaluation`
+  - `models`: resultados y trazabilidad de ejecución (`EvaluationResult`, `TraceStep`).
+  - `services`: motor de evaluación de cadenas para DFA y NFA.
+  - `controllers`: orquestación de evaluación unitaria y por lotes.
+- `co.edu.uptc.automatonsimulationservice.persistence`
+  - `models`: DTOs para serialización JSON y coordenadas (`AutomatonFile`, `StatePosition`).
+  - `services`: lectura/escritura JSON y validación de estructura de archivo.
+  - `controllers`: interfaz de persistencia usada por la UI.
+- `co.edu.uptc.automatonsimulationservice.ui`
+  - `controllers`: lógica de interacción JavaFX para editor principal y panel de pruebas.
+  - `services`: layout y renderizado del diagrama, bootstrap de aplicación y diálogos.
+  - `models`: modelos de apoyo para representación visual.
+  - `views`: archivos FXML y estilos CSS.
 
-Las reglas de negocio viven en servicios de dominio y son consumidas por los controladores.
+Las reglas de negocio se concentran en `services` de dominio y la UI se limita a coordinar flujos de interacción.
 
 ## Archivos JSON de ejemplo
 
-- `src/main/resources/co/edu/uptc/automatonsimulationservice/examples/dfa-even-a.json`
-- `src/main/resources/co/edu/uptc/automatonsimulationservice/examples/nfa-ends-with-ab.json`
+- `src/main/resources/co/edu/uptc/automatonsimulationservice/examples/dfa-Pares0impares1.json`
+- `src/main/resources/co/edu/uptc/automatonsimulationservice/examples/dfa-terminan-diferente-ayb.json`
+- `src/main/resources/co/edu/uptc/automatonsimulationservice/examples/nfa-terminan-diferente-ayb.json`
+- `src/main/resources/co/edu/uptc/automatonsimulationservice/examples/nfa-terminan-en-10.json`
 
-Ambos archivos siguen el esquema de persistencia con la propiedad raiz `automaton`.
+Todos los archivos siguen el esquema de persistencia con la propiedad raiz `automaton`.
 
 ## Ejecucion
 
-Verifica Java primero:
+Compila el JAR ejecutable una vez:
 
 ```powershell
-java -version
-echo $env:JAVA_HOME
+./mvnw.cmd clean package
 ```
 
-Si `JAVA_HOME` esta vacio, configuralo en la sesion actual:
+Luego ejecuta la aplicacion corriendo solo el JAR:
 
 ```powershell
-$env:JAVA_HOME="C:\Program Files\Java\jdk-21"
-$env:Path="$env:JAVA_HOME\bin;$env:Path"
-```
-
-Luego ejecuta pruebas e inicia la aplicacion:
-
-```powershell
-./mvnw.cmd clean test
-./mvnw.cmd javafx:run
+java -jar .\target\automateo.jar
 ```
 
 # Manual de Usuario

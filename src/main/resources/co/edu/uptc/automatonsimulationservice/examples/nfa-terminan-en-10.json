@@ -1,0 +1,40 @@
+{
+  "automaton" : {
+    "type" : "NFA",
+    "states" : [ "q0", "q1", "q2" ],
+    "alphabet" : [ "1", "0" ],
+    "initialState" : "q0",
+    "acceptingStates" : [ "q2" ],
+    "transitions" : [ {
+      "fromState" : "q0",
+      "symbol" : "1",
+      "toState" : "q0"
+    }, {
+      "fromState" : "q0",
+      "symbol" : "0",
+      "toState" : "q0"
+    }, {
+      "fromState" : "q0",
+      "symbol" : "1",
+      "toState" : "q1"
+    }, {
+      "fromState" : "q1",
+      "symbol" : "0",
+      "toState" : "q2"
+    } ]
+  },
+  "statePositions" : {
+    "q0" : {
+      "x" : 275.3333333333333,
+      "y" : 280.0
+    },
+    "q1" : {
+      "x" : 414.6666666666667,
+      "y" : 280.6666666666667
+    },
+    "q2" : {
+      "x" : 562.0,
+      "y" : 280.6666666666667
+    }
+  }
+}
