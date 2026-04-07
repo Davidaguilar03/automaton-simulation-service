@@ -13,15 +13,24 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * Calcula la distribución geométrica de estados y la consolidación visual de transiciones para el diagrama.
+ */
 public class AutomatonDiagramLayoutService {
     private static final double DEFAULT_WIDTH = 900;
     private static final double DEFAULT_HEIGHT = 300;
     private static final double PADDING = 30;
 
+    /**
+     * Distribuye estados usando configuración por defecto cuando no se proveen posiciones fijas.
+     */
     public List<StateNodeView> layoutStates(AutomatonDefinition definition, double width, double height) {
         return layoutStates(definition, width, height, Map.of());
     }
 
+    /**
+     * Distribuye estados con soporte de posiciones fijas y ajuste al tamaño disponible del panel.
+     */
     public List<StateNodeView> layoutStates(
         AutomatonDefinition definition,
         double width,
@@ -79,6 +88,9 @@ public class AutomatonDiagramLayoutService {
         return nodeViews;
     }
 
+    /**
+     * Agrupa transiciones por par origen-destino para generar aristas etiquetadas en una sola entidad visual.
+     */
     public List<TransitionEdgeView> buildEdges(AutomatonDefinition definition) {
         Map<TransitionPair, Set<String>> groupedSymbols = new LinkedHashMap<>();
         for (TransitionRule transition : definition.getTransitions()) {
@@ -107,9 +119,15 @@ public class AutomatonDiagramLayoutService {
         return edges;
     }
 
+    /**
+     * Identificador compuesto para indexar transiciones por estado origen y destino.
+     */
     private record TransitionPair(String fromState, String toState) {
     }
 
+    /**
+     * Restringe coordenadas para preservar un margen visual mínimo dentro del lienzo.
+     */
     private double clampWithPadding(double value, double maxValue) {
         return Math.max(PADDING, Math.min(maxValue - PADDING, value));
     }

@@ -52,7 +52,7 @@ class AutomatonValidationServiceTest {
         ValidationResult validationResult = service.validate(definition);
 
         assertFalse(validationResult.valid());
-        assertTrue(validationResult.errors().stream().anyMatch(error -> error.contains("DFA requires exactly one transition")));
+        assertTrue(validationResult.errors().stream().anyMatch(error -> error.contains("Un DFA requiere exactamente una transicion")));
     }
 }
 

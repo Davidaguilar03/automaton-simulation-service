@@ -5,10 +5,12 @@ import co.edu.uptc.automatonsimulationservice.persistence.models.AutomatonFile;
 import co.edu.uptc.automatonsimulationservice.persistence.models.StatePosition;
 import co.edu.uptc.automatonsimulationservice.persistence.services.AutomatonJsonPersistenceService;
 
-import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Map;
 
+/**
+ * Controlador de dominio que centraliza operaciones de carga y guardado de autómatas en disco.
+ */
 public class PersistenceDomainController {
 
     private final AutomatonJsonPersistenceService automatonJsonPersistenceService;

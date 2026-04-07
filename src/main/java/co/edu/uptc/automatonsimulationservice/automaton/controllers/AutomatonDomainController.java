@@ -4,6 +4,9 @@ import co.edu.uptc.automatonsimulationservice.automaton.models.AutomatonDefiniti
 import co.edu.uptc.automatonsimulationservice.automaton.models.ValidationResult;
 import co.edu.uptc.automatonsimulationservice.automaton.services.AutomatonValidationService;
 
+/**
+ * Controlador de dominio que encapsula la interacción entre la UI y las reglas de validación de autómatas.
+ */
 public class AutomatonDomainController {
 
     private final AutomatonValidationService automatonValidationService;

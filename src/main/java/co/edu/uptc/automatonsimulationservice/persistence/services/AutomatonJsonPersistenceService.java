@@ -12,6 +12,9 @@ import java.nio.file.Path;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+/**
+ * Gestiona la serializacion y deserializacion de autómatas en formato JSON.
+ */
 public class AutomatonJsonPersistenceService {
     private final ObjectMapper objectMapper;
 
@@ -23,12 +26,6 @@ public class AutomatonJsonPersistenceService {
         this.objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
     }
 
-    /**
-     * Guarda la definición ignorando la existencia de coordenadas visuales.
-     */
-    public void save(Path path, AutomatonDefinition definition) throws IOException {
-        save(path, definition, Map.of());
-    }
 
     /**
      * Guarda la definición y un esquema de coordenadas del canvas en un archivo JSON.

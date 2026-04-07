@@ -13,6 +13,9 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
+/**
+ * Implementa las reglas de consistencia estructural y semántica para definiciones de DFA y NFA.
+ */
 public class AutomatonValidationService {
 
     /**

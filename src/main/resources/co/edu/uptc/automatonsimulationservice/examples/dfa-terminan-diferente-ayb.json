@@ -1,0 +1,72 @@
+{
+  "automaton" : {
+    "type" : "NFA",
+    "states" : [ "q1", "q2", "q3", "q4", "q0" ],
+    "alphabet" : [ "a", "b" ],
+    "initialState" : "q0",
+    "acceptingStates" : [ "q3", "q4" ],
+    "transitions" : [ {
+      "fromState" : "q0",
+      "symbol" : "a",
+      "toState" : "q1"
+    }, {
+      "fromState" : "q1",
+      "symbol" : "a",
+      "toState" : "q1"
+    }, {
+      "fromState" : "q1",
+      "symbol" : "b",
+      "toState" : "q3"
+    }, {
+      "fromState" : "q3",
+      "symbol" : "a",
+      "toState" : "q1"
+    }, {
+      "fromState" : "q3",
+      "symbol" : "b",
+      "toState" : "q3"
+    }, {
+      "fromState" : "q0",
+      "symbol" : "b",
+      "toState" : "q2"
+    }, {
+      "fromState" : "q2",
+      "symbol" : "a",
+      "toState" : "q4"
+    }, {
+      "fromState" : "q2",
+      "symbol" : "b",
+      "toState" : "q2"
+    }, {
+      "fromState" : "q4",
+      "symbol" : "a",
+      "toState" : "q4"
+    }, {
+      "fromState" : "q4",
+      "symbol" : "b",
+      "toState" : "q2"
+    } ]
+  },
+  "statePositions" : {
+    "q1" : {
+      "x" : 466.0,
+      "y" : 210.0
+    },
+    "q2" : {
+      "x" : 164.0,
+      "y" : 341.0
+    },
+    "q3" : {
+      "x" : 662.0,
+      "y" : 213.0
+    },
+    "q4" : {
+      "x" : 453.0,
+      "y" : 347.0
+    },
+    "q0" : {
+      "x" : 318.0,
+      "y" : 210.0
+    }
+  }
+}

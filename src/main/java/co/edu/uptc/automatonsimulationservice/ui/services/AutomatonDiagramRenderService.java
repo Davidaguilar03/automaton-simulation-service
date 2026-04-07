@@ -17,6 +17,9 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+/**
+ * Materializa en nodos JavaFX la representación gráfica de estados, transiciones y etiquetas del autómata.
+ */
 public class AutomatonDiagramRenderService {
     private static final double NODE_RADIUS = 28;
     private static final double ARROW_SIZE = 9;

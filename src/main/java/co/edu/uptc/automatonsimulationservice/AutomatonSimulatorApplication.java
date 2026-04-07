@@ -4,6 +4,9 @@ import co.edu.uptc.automatonsimulationservice.ui.services.ApplicationBootstrapSe
 import javafx.application.Application;
 import javafx.stage.Stage;
 
+/**
+ * Punto de entrada JavaFX que delega la configuracion inicial de la interfaz al servicio de arranque.
+ */
 public class AutomatonSimulatorApplication extends Application {
     private final ApplicationBootstrapService applicationBootstrapService = new ApplicationBootstrapService();
 

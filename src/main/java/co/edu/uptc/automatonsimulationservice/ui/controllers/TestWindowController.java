@@ -25,6 +25,9 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Controlador de la ventana de pruebas encargado de evaluar lotes de cadenas y visualizar su trazabilidad.
+ */
 public class TestWindowController {
     private static final double NODE_RADIUS = 28;
     private static final double FIT_PADDING = 24;
@@ -56,6 +59,9 @@ public class TestWindowController {
     private AutomatonDefinition automatonDefinition;
     private final Map<String, Point2D> statePositions;
 
+    /**
+     * Construye el controlador inicializando los servicios de evaluación y renderizado del diagrama.
+     */
     public TestWindowController() {
         this.evaluationDomainController = new EvaluationDomainController(new AutomatonEvaluationService());
         this.automatonDiagramLayoutService = new AutomatonDiagramLayoutService();
@@ -63,6 +69,9 @@ public class TestWindowController {
         this.statePositions = new LinkedHashMap<>();
     }
 
+    /**
+     * Configura listeners de selección y redimensionamiento al cargar los componentes FXML.
+     */
     @FXML
     private void initialize() {
         evaluationReportListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
@@ -74,6 +83,9 @@ public class TestWindowController {
         automatonDiagramPane.heightProperty().addListener((observable, oldValue, newValue) -> renderDiagram());
     }
 
+    /**
+     * Carga la definición del autómata y sus posiciones para preparar el panel de pruebas.
+     */
     public void loadData(AutomatonDefinition definition, Map<String, Point2D> positions) {
         this.automatonDefinition = copyDefinition(definition);
         this.statePositions.clear();
@@ -85,6 +97,9 @@ public class TestWindowController {
         statusLabel.setText("Listo para evaluar cadenas.");
     }
 
+    /**
+     * Ejecuta la evaluación por lotes validando precondiciones y actualizando el reporte visible.
+     */
     @FXML
     private void onRunBatch() {
         try {
@@ -110,12 +125,18 @@ public class TestWindowController {
         }
     }
 
+    /**
+     * Cierra la ventana de pruebas activa.
+     */
     @FXML
     private void onCloseWindow() {
         Stage stage = (Stage) statusLabel.getScene().getWindow();
         stage.close();
     }
 
+    /**
+     * Sincroniza los componentes resumen de la UI con la definición de autómata actualmente cargada.
+     */
     private void refreshSummary() {
         statesListView.setItems(FXCollections.observableArrayList(automatonDefinition.getStates()));
         alphabetListView.setItems(FXCollections.observableArrayList(automatonDefinition.getAlphabet()));
@@ -123,6 +144,9 @@ public class TestWindowController {
         initialStateValueLabel.setText(automatonDefinition.getInitialState() == null ? "-" : automatonDefinition.getInitialState());
     }
 
+    /**
+     * Renderiza el diagrama del autómata ajustando posiciones para maximizar legibilidad en el panel.
+     */
     private void renderDiagram() {
         if (automatonDefinition == null) {
             return;
@@ -143,6 +167,9 @@ public class TestWindowController {
         automatonDiagramRenderService.render(automatonDiagramPane, stateViews, edges);
     }
 
+    /**
+     * Reescala y centra posiciones persistidas para adaptarlas al tamaño disponible del panel.
+     */
     private Map<String, Point2D> fitAndCenterPositionsForPane(
         AutomatonDefinition definition,
         Map<String, Point2D> originalPositions,
@@ -194,10 +221,16 @@ public class TestWindowController {
         return centeredPositions;
     }
 
+    /**
+     * Restringe un valor numérico al intervalo cerrado definido por min y max.
+     */
     private double clamp(double value, double min, double max) {
         return Math.max(min, Math.min(max, value));
     }
 
+    /**
+     * Parsea el texto de entrada en una lista de cadenas no vacías respetando el límite por lote.
+     */
     private List<String> parseBatchInputs(String value) {
         if (value == null || value.isBlank()) {
             return List.of();
@@ -215,6 +248,9 @@ public class TestWindowController {
         return inputs;
     }
 
+    /**
+     * Construye y muestra la traza textual detallada de un resultado de evaluación seleccionado.
+     */
     private void renderTrace(EvaluationResult result) {
         StringBuilder builder = new StringBuilder();
         for (TraceStep step : result.getTrace()) {
@@ -229,6 +265,9 @@ public class TestWindowController {
         traceArea.setText(builder.toString());
     }
 
+    /**
+     * Genera una copia defensiva de la definición para evitar mutaciones externas durante las pruebas.
+     */
     private AutomatonDefinition copyDefinition(AutomatonDefinition source) {
         AutomatonDefinition copy = new AutomatonDefinition();
         copy.setType(source.getType());
